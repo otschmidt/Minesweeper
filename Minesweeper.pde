@@ -2,10 +2,10 @@
 
 import de.bezier.guido.*;
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
-public final static int NUM_ROWS = 4;
-public final static int NUM_COLS = 4;
+public final static int NUM_ROWS = 20;
+public final static int NUM_COLS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
-private ArrayList <MSButton> bombs = new ArrayList <MSButton> (); //ArrayList of just the minesweeper buttons that are mined
+private ArrayList <MSButton> bombs = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 public int bCounter = 10;
 void setup ()
 {
@@ -14,32 +14,32 @@ void setup ()
     
     // make the manager
     Interactive.make( this );
-    
+
     //your code to declare and initialize buttons goes here
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
-    for(int row=0; row<NUM_ROWS; row++)
+    for(int row=0; row<NUM_ROWS; row++){
         for(int col=0; col<NUM_COLS; col++)
             new MSButton(row,col);
+    }
         
-    //while(bCounter >= 1)
-        //setBombs();
+    while(bCounter>=1)
+        setBombs();
 }
 public void setBombs()
 {
     //your code
-    int r = (int)(Math.random()*NUM_ROWS);
-    int c = (int)(Math.random()*NUM_COLS);
-
-    if(!bombs.contains(buttons[r][c])){
-        bombs.add(0,buttons[r][c]);
-        bCounter = bCounter -1;
+    int numRow = (int)(Math.random()*NUM_ROWS);
+    int numCol = (int)(Math.random()*NUM_COLS);
+    if(bCounter>=1) {
+        if(!bombs.contains(buttons[numRow][numCol])){
+            bombs.add(0,buttons[numRow][numCol]);
+            bCounter--;
+             }
+        else{
+            setBombs();
+        }
     }
-    else{
-        //setBombs();
-    }
-
-    
-
+    System.out.println(bCounter);
 }
 
 public void draw ()
@@ -96,7 +96,6 @@ public class MSButton
         clicked = true;
         //your code here
     }
-
     public void draw () 
     {    
         if (marked)
