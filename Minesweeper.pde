@@ -2,11 +2,11 @@
 
 import de.bezier.guido.*;
 //Declare and initialize NUM_ROWS and NUM_COLS = 20
-public final static int NUM_ROWS = 20;
-public final static int NUM_COLS = 20;
+public final static int NUM_ROWS = 10;
+public final static int NUM_COLS = 10;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
-public int bCounter = 10;
+public int bCounter = 20;
 void setup ()
 {
     size(400, 400);
@@ -19,7 +19,7 @@ void setup ()
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
     for(int row=0; row<NUM_ROWS; row++){
         for(int col=0; col<NUM_COLS; col++)
-            new MSButton(row,col);
+            buttons[row][col]=new MSButton(row,col);
     }
         
     while(bCounter>=1)
@@ -93,6 +93,22 @@ public class MSButton
     
     public void mousePressed () 
     {
+        if(marked == true)
+        {
+          marked = false;
+     
+           if(isValid(r,c-1) && buttons[r][c-1].isClicked())
+                buttons[r][c-1].mousePressed();
+            /*
+           if(isValid(r,c+1) && buttons[r][c+1].isMarked())
+                buttons[r][c+1].mousePressed();
+           if(isValid(r-1,c) && buttons[r-1][c].isMarked())
+                buttons[r-1][c].mousePressed();
+           if(isValid(r+1,c) && buttons[r+1][c].isMarked())
+                buttons[r+1][c].mousePressed();
+            */
+        }
+    
         clicked = true;
         //your code here
     }
@@ -115,10 +131,11 @@ public class MSButton
     {
         label = newLabel;
     }
-    public boolean isValid(int r, int c)
+    public boolean isValid(int r, int c) //post condition: returns true if both row and col are valid, false otherwise
     {
-        //your code here
-        return false;
+      if(r>=0 && r<=NUM_ROWS-1 && c>=0 && c<=NUM_COLS-1)
+        return true;
+      return false;
     }
     public int countBombs(int row, int col)
     {
