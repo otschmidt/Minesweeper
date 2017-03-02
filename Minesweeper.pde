@@ -44,7 +44,7 @@ public void setBombs()
 
 public void draw ()
 {
-    background( 0 );
+    background(0);
     if(isWon())
         displayWinningMessage();
 }
@@ -96,8 +96,9 @@ public class MSButton
         if(marked == true)
         {
           marked = false;
-     
-           if(isValid(r,c-1) && buttons[r][c-1].isClicked())
+          if(numBombs>0)
+            
+           if(isValid(r,c-1) && !bombs.contains(buttons[r][c-1]) && !buttons[r][c-1].isMarked())
                 buttons[r][c-1].mousePressed();
             /*
            if(isValid(r,c+1) && buttons[r][c+1].isMarked())
@@ -141,6 +142,16 @@ public class MSButton
     {
         int numBombs = 0;
         //your code here
+        if(isValid(r,c-1) && !bombs.contains(buttons[r][c-1]))
+            numBombs++;
+        if(isValid(r,+1) && !bombs.contains(buttons[r][c+1]))
+            numBombs++;
+        if(isValid(r+1,c) && !bombs.contains(buttons[r+1][c]))
+            numBombs++;
+        if(isValid(r-1,c) && !bombs.contains(buttons[r-1][c]))
+            numBombs++;
+
+
         return numBombs;
     }
 }
