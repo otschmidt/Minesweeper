@@ -78,13 +78,10 @@ public void displayLosingMessage()
     textSize(12);
     for(int rowBomb=0; rowBomb<NUM_ROWS;rowBomb++){
         for(int colBomb=0; colBomb<NUM_COLS;colBomb++){
-                //fill(255,0,0);
-                //rect(buttons[rowBomb][colBomb].x,buttons[rowBomb][colBomb].y,buttons[rowBomb][colBomb].width,buttons[rowBomb][colBomb].height);
                 buttons[rowBomb][colBomb].mousePressed();
                 fill(255,0,0);
         }
     }
-    //noLoop();
  }
 public void displayWinningMessage()
 {
@@ -131,7 +128,6 @@ public class MSButton
             if(countBombs(r,c)>0){
                 fill(0);
                 label = ""+(this.countBombs(r,c));
-                //text(label, x+width/2, y+ height/2);
             }else{
                     if(isValid(r,c-1) && !bombs.contains(buttons[r][c-1])&&!buttons[r][c-1].isClicksed())
                          buttons[r][c-1].mousePressed();
@@ -183,7 +179,6 @@ public class MSButton
         }
         rect(x, y, width, height);
         fill(0);
-        //label = Integer.toString(this.countBombs(r,c));
         text(label, x+width/2, y+ height/2);
     
     }
