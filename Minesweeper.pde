@@ -73,6 +73,7 @@ public void displayLosingMessage()
     textSize(50);
     fill(0);
     text("Game Over", 200, 200);
+    textSize(40);
     text("Refresh to try again",200,250);
     textSize(12);
     for(int rowBomb=0; rowBomb<NUM_ROWS;rowBomb++){
