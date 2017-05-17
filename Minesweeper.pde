@@ -1,16 +1,14 @@
 
 
 import de.bezier.guido.*;
-//Declare and initialize NUM_ROWS and NUM_COLS = 20
 private int NUM_ROWS=20;
 private int NUM_COLS=20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
-//private ArrayList <MSButton> bombs; //ArrayList of just the minesweeper buttons that are mined
 private ArrayList<MSButton> bombs = new ArrayList<MSButton>();
 private int numCol=20;
 private int numRow=20;
 private int bombCounter=0;
-private int clearChecker=0;
+private int check=0;
 private static int bombInit=30;
 void setup ()
 {
@@ -46,15 +44,10 @@ public void setBombs()
                 setBombs();
             }
         }
-    //System.out.println(bombCounter);asjksdf
 }
 
 public void draw ()
 {
-    //background( 0 );
-    //System.out.println(clearChecker);
-    //if(isWon())
-      // displayWinningMessage();
 }
 public boolean isWon()
 {
@@ -62,15 +55,15 @@ public boolean isWon()
             for(int rowBomb=0; rowBomb<NUM_ROWS;rowBomb++){
                 for(int colBomb=0; colBomb<NUM_COLS;colBomb++){
                     if(buttons[rowBomb][colBomb].isClicksed()){
-                        clearChecker++;
+                        check++;
                     }
                    
                 }
             }
-        if(clearChecker>=(NUM_ROWS*NUM_COLS)-bombInit){
+        if(check>=(NUM_ROWS*NUM_COLS)-bombInit){
             return true;    
         }
-        clearChecker=0;
+        check=0;
         return false;
 }
 public void displayLosingMessage()
@@ -79,7 +72,8 @@ public void displayLosingMessage()
     //background(40);
     textSize(50);
     fill(0);
-    text("Game Over", 200, 90);
+    text("Game Over", 200, 200);
+    text("Refresh to try again",200,250);
     textSize(12);
     for(int rowBomb=0; rowBomb<NUM_ROWS;rowBomb++){
         for(int colBomb=0; colBomb<NUM_COLS;colBomb++){
